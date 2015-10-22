@@ -1,0 +1,835 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>INSTANT QUOTE</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+	<link href="//assets.www2.dragndropbuilder.com/css/sites.css?buildTime=1432850483" rel="stylesheet" type="text/css" />
+	<link href="http://www2.dragndropbuilder.com/editor/libraries/fancybox/fancybox.css?1432850483" rel="stylesheet" type="text/css" />
+	<link href="/files/main_style.css?1436763864" rel="stylesheet" title="wsite-theme-css" type="text/css" />
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,700,400italic,700italic" rel="stylesheet" type="text/css" />
+	<link href="http://fonts.googleapis.com/css?family=Josefin+Sans:400,300,300italic,700,400italic,700italic" rel="stylesheet" type="text/css" />
+	<link href="http://fonts.googleapis.com/css?family=Amaranth:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+<style>
+        html, body
+        {
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+        #map-canvas
+        {
+			height: 45%;
+            width: 75%;
+            text-align: center;
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .controls
+        {
+           position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid transparent;
+            border-radius: 2px 0 0 2px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            height: 32px;
+            outline: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        #pac-input
+        {
+          
+            position: relative;
+            margin-left: 155px;
+            margin-right: auto;
+            background-color: #fff;
+            font-family: Roboto;
+            font-size: 16px;
+            font-weight: 300;
+           
+          
+            text-overflow: ellipsis;
+          width: 810px;
+        }
+        
+        #pac-input:focus
+        {
+            border-color: #4d90fe;
+        }
+        
+        .pac-container
+        {
+            font-family: Roboto;
+        }
+        
+        #type-selector
+        {
+            color: #fff;
+            background-color: #4d90fe;
+            padding: 5px 11px 0px 11px;
+        }
+        
+        #type-selector label
+        {
+            font-family: Roboto;
+            font-size: 14px;
+            font-weight: 300;
+        }
+         .style6
+        {
+            width: 240px;
+        }
+        .style7
+        {
+            width: 245px;
+        }
+        .style8
+        {
+            width: 110px;
+        }
+        .style9
+        {
+            color: Orange;
+        }
+        .style10
+        {
+            visibility: hidden;
+        }
+        
+        
+        #Button1
+        {
+            margin-left: 47px;
+        }
+        .style11
+        {
+            width: 483px;
+        }
+		
+		.titlePar
+		{
+		   font-weight:bold;
+		   text-decoration : underline
+		
+		}
+		
+			.titleSearch
+		{
+		   font-weight:bold;
+		   text-decoration : underline;
+		   position: relative;
+            margin-left: 155px;
+            margin-right: auto;
+		
+		}
+		.div{
+
+border: 1px rgb(89,89,89) solid;
+
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+
+background: rgb(166, 205, 206);
+
+color: rgb(25,25,25);
+font-size: inherit;
+font-weight: inherit;
+font-family: inherit;
+font-style: inherit;
+text-decoration: inherit;
+text-align: center;
+
+line-height: 1.5em;
+-moz-box-shadow: inset -2px -7px 54px 3px rgb(128,128,128);
+-webkit-box-shadow: inset -2px -7px 54px 3px rgb(128,128,128);
+box-shadow: inset -2px -7px 54px 3px rgb(128,128,128);
+}
+	
+	/* CSS Button   */ 
+	
+	
+	.btn {
+  background: #2876ab;
+  background-image: -webkit-linear-gradient(top, #2876ab, #1c7fbd);
+  background-image: -moz-linear-gradient(top, #2876ab, #1c7fbd);
+  background-image: -ms-linear-gradient(top, #2876ab, #1c7fbd);
+  background-image: -o-linear-gradient(top, #2876ab, #1c7fbd);
+  background-image: linear-gradient(to bottom, #2876ab, #1c7fbd);
+  -webkit-border-radius: 9;
+  -moz-border-radius: 9;
+  border-radius: 9px;
+  text-shadow: 0px 0px 0px #666666;
+  font-family: Georgia;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #277bb3);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #277bb3);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #277bb3);
+  background-image: -o-linear-gradient(top, #3cb0fd, #277bb3);
+  background-image: linear-gradient(to bottom, #3cb0fd, #277bb3);
+  text-decoration: none;
+ 
+}
+
+
+
+/* CSS Popup*/
+.cf:before,
+.cf:after {
+  content:"";
+  display:table;
+}
+.cf:after {
+  clear:both;
+}
+.droite {
+  float:right;
+}
+ 
+.oModal {
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  opacity:0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
+}
+ 
+.oModal:target {
+  opacity:1;
+  pointer-events: auto;
+}
+ 
+.oModal:target > div {
+  margin: 10% auto;
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+}
+ 
+.oModal > div {
+  max-width: 600px;
+  position: relative;
+  margin: 1% auto;
+  padding: 8px 8px 8px 8px;
+  border-radius: 5px;
+  background: #eee;
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+}
+ 
+.oModal > div header,.oModal > div footer {
+  border-bottom: 1px solid #e7e7e7;
+  border-radius: 5px 5px 0 0;
+}
+.oModal .footer {
+  border:none;
+  border-top: 1px solid #e7e7e7;
+  border-radius: 0 0 5px 5px;
+}
+ 
+.oModal > div h2 {
+  margin:0;
+}
+ 
+.oModal > div .btn {
+  float:right;
+}
+ 
+.oModal > div section,.oModal > div > header, .oModal > div > footer {
+  padding:15px;
+}
+
+
+
+    </style>
+		<style type="text/css">.wsite-elements div.paragraph, .wsite-elements p, .wsite-elements .product-block .product-title, .wsite-elements .product-description, .wsite-elements .wsite-form-field label, .wsite-elements .wsite-form-field label, #wsite-content div.paragraph, #wsite-content p, #wsite-content .product-block .product-title, #wsite-content .product-description, #wsite-content .wsite-form-field label, #wsite-content .wsite-form-field label, .blog-sidebar div.paragraph, .blog-sidebar p, .blog-sidebar .wsite-form-field label, .blog-sidebar .wsite-form-field label {font-family:Amaranth !important;font-size:29px !important;}
+#wsite-content div.paragraph, #wsite-content p, #wsite-content .product-block .product-title, #wsite-content .product-description, #wsite-content .wsite-form-field label, #wsite-content .wsite-form-field label, .blog-sidebar div.paragraph, .blog-sidebar p, .blog-sidebar .wsite-form-field label, .blog-sidebar .wsite-form-field label {color:#a82e2e !important;}
+.wsite-elements h2, .wsite-elements .product-long .product-title, .wsite-elements .product-large .product-title, .wsite-elements .product-small .product-title, #wsite-content h2, #wsite-content .product-long .product-title, #wsite-content .product-large .product-title, #wsite-content .product-small .product-title, .blog-sidebar h2 {}
+#wsite-content h2, #wsite-content .product-long .product-title, #wsite-content .product-large .product-title, #wsite-content .product-small .product-title, .blog-sidebar h2 {}
+#wsite-title {}
+	</style>
+	<style type="text/css">.wsite-header {
+	background-image: url(/uploads/3/6/1/0/3610063/header_images/1436763846.jpg) !important;
+	background-position: 0 0 !important;
+}
+	</style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places,geometry,drawing"></script>
+    <script src="http://sitespecificfarming.com/files/OpenLayers.js"></script>
+    <script type="text/javascript" src="http://sitespecificfarming.com/files/javascript.js"></script>
+    <script type="text/javascript" src="http://sitespecificfarming.com/files/jsts.js"></script>
+		<script><!--
+var STATIC_BASE = 'http://www2.dragndropbuilder.com/';
+var STYLE_PREFIX = 'wsite';
+//-->
+</script><script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script><script src='//assets.www2.dragndropbuilder.com/js/site/main.js?buildTime=1432850483'></script><script type='text/javascript'><!--
+var DISABLE_NAV_MORE=1;
+(function(jQuery){
+function initFlyouts(){initPublishedFlyoutMenus([{"id":"812046859878796970","title":"Home","url":"index.html","target":""},{"id":"188348048714600127","title":"About Us","url":"about-us.html","target":""},{"id":"333780063250898709","title":"Soil Sampling","url":"soil-sampling.html","target":""},{"id":"930235834255872259","title":"Management Zones","url":"management-zones.html","target":""},{"id":"911898599150048583","title":"Variable Rate","url":"variable-rate.html","target":""},{"id":"191594946106667304","title":"Contact Us","url":"contact-us.html","target":""}],'812046859878796970',"<li class='wsite-nav-more'><a href='#'>more...<\/a><\/li>",'active',false)}
+if (jQuery) {
+if (jQuery.browser.msie && !window.flyoutMenusRefreshable) window.onload = initFlyouts;
+else jQuery(initFlyouts);
+}else{
+if (Prototype.Browser.IE) window.onload = initFlyouts;
+else document.observe('dom:loaded', initFlyouts);
+}
+})(window._W && _W.jQuery)
+//-->
+</script>
+ <script>
+       var map;
+        var polygons;
+        var tableauPoly;
+        tableauPoly = new Array();
+        var poly1;
+        function readJSON(file) {
+            var request = new XMLHttpRequest();
+            request.open('GET', file, false);
+            request.send(null);
+            if (request.status == 200)
+                return request.responseText;
+        };
+
+       // var sector_data = JSON.parse(readJSON('http://localhost:37948/google.json'));
+
+
+
+
+        function initialize() {
+            var mapOptions = {
+                center: new google.maps.LatLng(46.164614496897094, -94.32586669921875),
+                mapTypeId: google.maps.MapTypeId.HYBRID,
+                zoom: 7
+
+            };
+
+            map = new google.maps.Map(document.getElementById('map-canvas'),
+    mapOptions);
+
+
+
+            var drawingManager = new google.maps.drawing.DrawingManager({
+                drawingMode: google.maps.drawing.OverlayType.POLYGON,
+                drawingControl: false,
+                drawingControlOptions: {
+                    position: google.maps.ControlPosition.TOP_CENTER,
+                    drawingModes: [
+
+        google.maps.drawing.OverlayType.POLYGON
+
+      ]
+                },
+                markerOptions: {
+                    icon: 'images/beachflag.png'
+                },
+                circleOptions: {
+                    fillColor: '#ffff00',
+                    fillOpacity: 1,
+                    strokeWeight: 5,
+                    clickable: false,
+                    editable: true,
+                    zIndex: 1
+                },
+                polygonOptions: {
+                strokeColor: '#FF0000',
+                fillColor: '#FF0000'
+                }
+            });
+
+
+
+
+
+            // Create the search box and link it to the UI element.
+            var input = /** @type {HTMLInputElement} */(
+      document.getElementById('pac-input'));
+          //  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+            var searchBox = new google.maps.places.SearchBox(
+            /** @type {HTMLInputElement} */(input));
+
+            // Listen for the event fired when the user selects an item from the
+            // pick list. Retrieve the matching places for that item.
+            google.maps.event.addListener(searchBox, 'places_changed', function () {
+
+                var places = [];
+                places = searchBox.getPlaces();
+
+                if (places.length == 0) {
+                    return;
+                }
+
+
+                // For each place, get the icon, place name, and location.
+
+                var bounds = new google.maps.LatLngBounds();
+                for (var i = 0, place; place = places[i]; i++) {
+                    var image = {
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                    };
+
+
+
+                    bounds.extend(place.geometry.location);
+                }
+
+                // map.fitBounds(bounds);
+                map.fitBounds(places[0].geometry.viewport);
+                // map.setZoom(6);
+            });
+
+
+
+            google.maps.event.addListener(drawingManager, 'overlaycomplete', function (event) {
+                if (event.type == google.maps.drawing.OverlayType.POLYGON) {
+                    AfficherInputs();
+                    var z = ' <br> polygone dessiner : <br>';
+                    z += google.maps.geometry.spherical.computeArea(event.overlay.getPath().getArray());
+                    z += ' <br> ';
+                    // var radius = event.overlay.getRadius()
+                    var polygonBounds = event.overlay.getPath();
+                    polygonBounds.push(new google.maps.LatLng(polygonBounds.getAt(0).lat(), polygonBounds.getAt(0).lng()));
+
+                    poly1 = new google.maps.Polygon({
+
+                        paths: polygonBounds,
+                        strokeColor: '#FF0000',
+                        strokeOpacity: 0.8,
+                        strokeWeight: 2,
+                        fillColor: '#FF0000',
+                        fillOpacity: 0.35
+                    });
+
+                    var coordinates = [];
+
+                    for (var i = 0; i < polygonBounds.length; i++) {
+                        z += polygonBounds.getAt(i).lat() + ' ' + polygonBounds.getAt(i).lng() + ' <br>';
+
+                    }
+                    z += tableauPoly.length + ' <br>';
+
+                    document.getElementById('coords').innerHTML += z + "<br>";
+
+                    document.getElementById('coords').innerHTML += ' <br> Calcule des surfaces de chauvauchement  <br>';
+                    for (var j = 0; j < tableauPoly.length; j++) {
+
+
+                        var poly2 = new google.maps.Polygon({
+                            paths: tableauPoly[j].getPath(),
+                            strokeColor: '#FF0000',
+                            strokeOpacity: 0.8,
+                            strokeWeight: 2,
+                            fillColor: '#FF0000',
+                            fillOpacity: 0.35
+                        });
+
+                        document.getElementById('coords').innerHTML += 'surface de chauvauchement avec polygon : ' + j + " est : " + calculateAreaOfintersection(poly1, poly2) + '<br>';
+                    }
+
+                }
+            });
+
+            drawingManager.setMap(map);
+            //sector_callback(sector_data);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+        window.sector_callback = function (results) {
+            var bounds = new google.maps.LatLngBounds();
+            for (var i = 0, len = results.features.length; i < len; i++) {
+                var coords = results.features[i].geometry.coordinates[0];
+                var path = [];
+                document.getElementById('coords').innerHTML += "Polygon " + i + "<br>";
+                for (var j = 0; j < coords.length; j++) {
+                    //alert("coords["+j+"][1]="+coords[j][1]+", coords["+j+"][0]="+coords[j][0]);
+                    var pt = new google.maps.LatLng(coords[j][1], coords[j][0])
+                    bounds.extend(pt);
+                    path.push(pt);
+                    document.getElementById('coords').innerHTML += coords[j] + "<br>";
+                }
+
+                polygons = new google.maps.Polygon({
+                /*
+                    path: path,
+                    strokeColor: "#FF0000",
+                    strokeOpacity: 0.8,
+                    strokeWeight: 1,
+                    fillColor: get_random_color(),
+                    fillOpacity: 0.35,
+                    map: map
+                    */
+                    path: path,
+                    strokeColor: "#ffffff",
+                    strokeOpacity: 0.0,
+                    strokeWeight: 1,
+                    //fillColor: get_random_color(),
+                    fillColor: "#ffffff",
+                    fillOpacity: 0.0,
+                    map: map
+                });
+                tableauPoly.push(polygons);
+                document.getElementById('coords').innerHTML += 'area : ' + google.maps.geometry.spherical.computeArea(path) + ' <br>';
+            }
+            map.fitBounds(bounds);
+
+        }
+
+        function get_random_color() {
+            function c() {
+                return Math.floor(Math.random() * 256).toString(16)
+            }
+            return "#" + c() + c() + c();
+        }
+
+        var calculateAreaOfintersection = function (poly1, poly2) {
+
+            var geometryFactory = new jsts.geom.GeometryFactory();
+
+            var trito = poly1.getPath();
+
+            var tritoCoor = googleMaps2JTS(trito);
+            var shell = geometryFactory.createLinearRing(tritoCoor);
+
+            var trito2 = poly2.getPath();
+
+            var tritoCoor2 = googleMaps2JTS(trito2);
+
+            var shell2 = geometryFactory.createLinearRing(tritoCoor2);
+
+            var jstsPolygon = geometryFactory.createPolygon(shell);
+
+            var jstsPolygon2 = geometryFactory.createPolygon(shell2);
+            var intersection;
+
+
+
+
+            intersection = jstsPolygon.intersection(jstsPolygon2);
+            var intersectionGMArray = jsts2googleMaps(intersection);
+
+            var intersectionGMarea = google.maps.geometry.spherical.computeArea(intersectionGMArray);
+
+            return intersectionGMarea;
+
+        }
+
+
+
+
+        var jsts2googleMaps = function (geometry) {
+            var coordArray = geometry.getCoordinates();
+            GMcoords = [];
+            for (var i = 0; i < coordArray.length; i++) {
+                GMcoords.push(new google.maps.LatLng(coordArray[i].x, coordArray[i].y));
+
+            }
+            return GMcoords;
+        }
+
+        var googleMaps2JTS = function (boundaries) {
+            var coordinates = [];
+            for (var i = 0; i < boundaries.getLength(); i++) {
+                coordinates.push(new jsts.geom.Coordinate(
+        boundaries.getAt(i).lat(), boundaries.getAt(i).lng()));
+
+            }
+
+            return coordinates;
+        }
+
+
+        function recharger() {
+            window.location.reload();
+        }
+
+
+
+        function sendMail() {
+            document.getElementById('Div-resultat').innerHTML = "";
+
+
+           
+
+            if (typeof poly1 != 'undefined') {
+                var area = google.maps.geometry.spherical.computeArea(poly1.getPath().getArray()) * 0.000247105381;
+                var coup =0;
+                var total = 0;
+                var entre = false;
+                var inputElements = document.getElementsByClassName('services');
+                for (var i = 0; inputElements[i]; ++i) {
+                    if (inputElements[i].checked == true) {
+                         coup = (area * inputElements[i].value);
+                        switch (i) {
+                            case 0:
+                                if (coup < 50) {
+                                    coup = (50);
+                                    
+                                }
+                                break;
+							case 1:
+								coup=150;
+								break;
+                            case 2:
+                                if (coup < 200) {
+                                    coup = (200);
+                                   
+                                }
+                                break;
+                            case 3:
+                                if (coup < 200) {
+                                    coup = (200);
+                                   
+                                }
+                                break;
+                            case 4:
+                                if (coup < 50) {
+                                    coup = (50);
+                                   
+                                }
+                                break;
+                            case 5:
+                                if (coup < 50) {
+                                    coup = (50);
+                                   
+                                }
+                                break;
+                            case 6:
+                                if (coup < 60) {
+                                    coup = (60);
+                                  
+                                }
+                                break;
+							case 7:
+								coup=50;
+								break;
+
+                        }
+                        
+                        total = total + coup;
+                        entre = true;
+                    }
+                    }
+                
+                if (entre == false) {
+                    document.getElementById('Div-resultat').innerHTML = "ERROR : Please check at least one service";
+                    return;
+
+                }
+
+
+
+                var polygonBounds = poly1.getPath();
+                var coordsForMail="";
+                var coordsForPage="";
+                for (var i = 0; i < polygonBounds.length; i++) {
+                    coordsForMail += polygonBounds.getAt(i).lat() + ' ' + polygonBounds.getAt(i).lng() + '\n';
+                    coordsForPage += polygonBounds.getAt(i).lat() + ',' + polygonBounds.getAt(i).lng() + ';';
+                }
+                coordsForPage += "&center=" + polygonBounds.getAt(0).lat() + ',' + polygonBounds.getAt(0).lng();
+                document.getElementById('comments').value = "Total calculated : $ " + parseInt(total,10) + " \n";
+                document.getElementById('comments').value += "Field area : " + parseInt(area, 10) + " acre \n";
+                document.getElementById('comments').value += "Polygon coord : \n " + coordsForMail;
+                document.getElementById('comments').value += "direct Link \n";
+                document.getElementById('comments').value += "http://sitespecificfarming.com/ViewPage.html?coord=" + coordsForPage;
+                document.getElementById('Div-resultat').innerHTML = "Total Service cost :<p style=\"text-decoration:underline; color:Green;\"> $ " + parseInt(total, 10) + "</p> <br/>";
+                document.getElementById('Div-resultat').innerHTML += "Field area : <p style=\"text-decoration:underline; color:Green;\">" + parseInt(area, 10) + " acre </p>   <br/>";
+               
+                document.forms["sendForm"].submit();
+            }
+            else {
+                document.getElementById('Div-resultat').innerHTML = "ERROR : Please check your inputs";
+            }
+        }
+        function onload() {
+            document.getElementById('DivCheckBoxes').style.display = 'none';
+
+        }
+        function AfficherInputs() {
+           
+            document.getElementById('msghead').innerHTML = 'Please select one or more services';
+            document.getElementById('DivCheckBoxes').style.display = '';
+        }
+
+    </script>
+</head>
+<body onload='onload()'>
+<div class="top-background">
+<div class="top-background-image" data-speed="4" data-type="background"></div>
+
+<div id="header-wrap">
+<div class="container">
+<table id="header">
+	<tbody>
+		<tr>
+			<td id="header-right">
+			<table>
+				<tbody>
+					<tr>
+						<td class="phone-number"></td>
+						<td class="social"></td>
+						<td class="search"></td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+<!-- end container --></div>
+<!-- end header-wrap -->
+
+<div id="nav-wrap">
+<div class="container header-align-outer">
+<div class="header-align-mid">
+<div class="header-align-inner">
+
+<div class="nav-container">
+<ul class="wsite-menu-default">
+	<li id='active'><a href='/index.html'>Home</a></li><li id='pg188348048714600127'><a href='/about-us.html'>About Us</a></li><li id='pg333780063250898709'><a href='/soil-sampling.html'>Soil Sampling</a></li><li id='pg930235834255872259'><a href='/management-zones.html'>Management Zones</a></li><li id='pg911898599150048583'><a href='/variable-rate.html'>Variable Rate</a></li><li id='pg191594946106667304'><a href='/contact-us.html'>Contact Us</a></li>
+	
+</ul>
+</div>
+</div>
+<!-- end header align inner --></div>
+<!-- end header align mid --></div>
+<!-- end container --></div>
+<!-- end nav wrap --></div>
+<div Style="background:white; height:1350px;">
+    <center>           
+         
+	<div id="msghead" class="btn"  >
+     Please locate your field and then draw its boundary
+	</div>
+       
+            <div id="DivCheckBoxes"  style="border: 1px solid;border-radius: 5px ; width:75% ; background-color:#DCDCDC">
+            <table style= "width:90%;">
+            <tr>
+            <td align = "left">
+               <br />
+            <p style="text-decoration:underline;"></p>
+            <input class="services" type="checkbox"  value="0.99" />Variable Rate Prescriptions for Fertilizer Lime and Seed. One Time Fee Per Season<br />
+            <input class="services" type="checkbox"  value="150" />Soil Sampling by Management Zone. Price Includes Lab Fee<br />
+            <input class="services" type="checkbox" value="1.99" />Soil Sampling by Grid, Includes Lab Fee<br />
+            <input class="services" type="checkbox" value="1.99" />VERIS Cart Mapping 
+            </td>
+            
+            
+            <td align = "left">
+            <p>    </p>
+            
+            <br />
+            <input class="services" type="checkbox" value="0.99" />Management Zones Creation<br />
+            <input class="services" type="checkbox" value="0.99" />In-Season Crop Health Imagery NDVI and More<br />
+            <input class="services" type="checkbox" value="0.99" />Drainage/Tiling Plan<br />
+            <input class="services" type="checkbox" value="50" />Yield Mapping
+           
+            </td>
+            </tr>
+            <tr>
+            <td align="center" colspan="2" >  <input id="Send" class="btn" type="button" value="Show Quote" onclick='sendMail()' style=""/></td>
+            </tr>
+            </table>
+            </div>
+             <div id="Div-resultat"  style="border: 1px solid;border-radius: 5px ; width:75% ; background-color:#E6E6FA"">
+            </div>
+    </center>
+     <br />
+      <p class="titleSearch">
+              Please enter a location:</p>
+    <input id="pac-input" class="controls" type="text" placeholder="Enter Address Here !">
+  
+    <br />
+      <br />
+    <div id="map-canvas">
+    </div>
+   <center>
+                    <input onclick="recharger()" class="btn"  type="button" value="Clear Map" />
+                    </center>
+            
+    <br />
+    <div  class="style10" id="coords">
+      <iframe width="0" height="0" border="0" hidden="true" name="dummyframe" id="dummyframe">
+        </iframe>
+        <form id="sendForm" action="http://formtoemail.com/user_forms.php" method="post"
+        target="dummyframe" style="background: #eee; width: 300px; padding: 15px; border-radius: 10px;">
+        <input type="hidden" name="user_id" value="Q15GRJE5WRVO36I9FPJ3">
+        <input type="hidden" name="form_id" value="1">
+        Name
+        <br>
+        <input type="text" id="name" name="name" style="width: 100%; margin: 0 0 10px;" value="MAPAPP">
+        Email Address
+        <br>
+        <input type="text" id="email" name="email" style="width: 100%; margin: 0 0 10px;"
+            value="noreply@MAPAPP.com">
+        Comments
+        <br>
+        <textarea name="comments" id="comments" style="width: 100%; height: 120px; margin: 0 0 10px;"></textarea>
+        <input type="submit" value="Send">
+        <span style="font: 10px arial; float: right; color: #666;"></span>
+        </form>
+    </div>
+   	  </div>
+	  
+    <br />
+	<div id="footer-wrap">
+<div class="container">
+<div class="wsite-elements wsite-footer">
+<div>
+<div class="wsite-multicol">
+<div class="wsite-multicol-table-wrap" style="margin:0 -15px">
+<table class="wsite-multicol-table">
+	<tbody class="wsite-multicol-tbody">
+		<tr class="wsite-multicol-tr">
+			<td class="wsite-multicol-col" style="width:64.574898785425%;padding:0 15px">
+			<div style="text-align:center;">
+			<div style="height: 10px; overflow: hidden;"></div>
+			<a class="wsite-button wsite-button-small wsite-button-normal" href="javascript:;"><span class="wsite-button-inner">Site Specific Farming LLC. P.O. Box 8113 St Paul MN 55108</span> </a>
+
+			<div style="height: 10px; overflow: hidden;"></div>
+			</div>
+			</td>
+			<td class="wsite-multicol-col" style="width:35.425101214575%;padding:0 15px">
+			<div style="text-align:center;">
+			<div style="height: 10px; overflow: hidden;"></div>
+			<a class="wsite-button wsite-button-small wsite-button-normal" href="javascript:;"><span class="wsite-button-inner">Serving MN, WI, ND and SD</span> </a>
+
+			<div style="height: 10px; overflow: hidden;"></div>
+			</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+	</div>
+<!-- end container --></div>
+<!-- end footer-wrap -->
+</body>
+</html>
